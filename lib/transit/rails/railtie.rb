@@ -12,7 +12,7 @@ module Transit
         Mime::Type.register "application/transit+msgpack", :transit_msgpack
 
         ActionController.add_renderer :transit do |obj, options|
-          self.content_type ||= "application/transit+json"
+          self.content_type ||= Mime::Type.lookup("application/transit+json")
           Transit::Rails::Renderer.new(obj, options).render
         end
       end
